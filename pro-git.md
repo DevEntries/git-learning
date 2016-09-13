@@ -367,4 +367,89 @@ git branch --no-merged 查看尚未合并到当前分支的分支
 git branch -D 如果真的想要删除分支并丢掉那些工作，可以使用 -D 选项强制删除它
 ```
 
+### 3.4 分支开发工作流
+**长期分支**
+因为 Git 使用简单的**三方合并**，所以就算在一段较长的时间内，反复把一个分支合并入另一个分支，也不是什么难事。
+![git-work-silos](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-work-silos.png)
+你可以用这种方法维护不同层次的稳定性。
+
+**特性分支**
+特性分支对任何规模的项目都适用。 特性分支是一种短期分支，它被用来实现单一特性工作。 
+
+### 3.5 远程分支
+远程引用是对远程仓库的引用（指针），包括分支、标签等等。
+```
+git ls-remote (remote) 显式地获得远程引用的完整列表
+git remote show (remote) 获得远程分支的更多信息
+```
+
+远程跟踪分支是远程分支状态的引用。
+它们以 (remote)/(branch) 形式命名。
+
+*NOTE*
+**“origin” 并无特殊含义**
+远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 
+同时 “master” 是当你运行 git init 时**默认的起始分支名字**。
+“origin” 是当你运行 git clone 时**默认的远程仓库名字**。
+
+// png
+也许，只要你不与 origin 服务器连接，你的 `origin/master` 指针就不会移动。
+// png
+如果要同步你的工作，运行 `git fetch origin` 命令。
+ 这个命令查找 “origin” 是哪一个服务器（在本例中，它是 git.ourcompany.com），从中**抓取本地没有的数据**，
+并且更新本地数据库，移动 origin/master 指针指向新的、更新后的位置。
+
+**推送**
+如果希望和别人一起在名为 serverfix 的分支上工作，你可以像推送第一个分支那样推送它。 
+运行 git push (remote) (branch)。
+```
+git push origin serverfix
+```
+
+
+你也可以运行 `git push origin serverfix:serverfix`，它会做同样的事。
+相当于它说，“推送本地的 serverfix 分支，将其作为远程仓库的 serverfix 分支”，
+可以通过这种格式来推送本地分支到一个命名不相同的远程分支。
+
+其他协作者从服务器上抓取数据时，他们会在本地生成一个远程分支 origin/serverfix，
+指向服务器的 serverfix 分支的引用。
+
+要特别注意的一点是当抓取到新的远程跟踪分支时，本地不会自动生成一份可编辑的副本（拷贝）。 
+换一句话说，这种情况下，不会有一个新的 serverfix 分支 - 只有一个**不可以修改**的 origin/serverfix 指针。
+
+可以运行 git merge origin/serverfix 将这些工作合并到当前所在的分支。
+
+如果想要在自己的 serverfix 分支上工作，可以将其建立在远程跟踪分支之上。
+```
+git checkout -b serverfix origin/serverfix
+``` 
+这会给你一个用于工作的本地分支，并且起点位于 origin/serverfix。
+
+**跟踪分支**
+跟踪分支
+从一个远程跟踪分支检出一个本地分支会自动创建一个叫做 “跟踪分支”（有时候也叫做 “上游分支”）。 
+**跟踪分支是与远程分支有直接关系的本地分支**。 
+如果在一个跟踪分支上输入 git pull，Git 能自动地识别去哪个服务器上抓取、合并到哪个分支。
+
+当克隆一个仓库时，它通常会自动地创建一个跟踪 origin/master 的 master 分支。 
+然而，如果你愿意的话可以设置其他的跟踪分支 - 其他远程仓库上的跟踪分支，或者不跟踪 master 分支。
+
+最简单的就是之前看到的例子，运行 `git checkout -b [branch] [remotename]/[branch]`。
+
+Git 提供了 --track 快捷方式。
+```
+git checkout --track origin/serverfix
+```
+如果想要将本地分支与远程分支设置为不同名字。
+```
+git checkout -b sf origin/serverfix
+```
+
+
+如果想要查看设置的所有跟踪分支，可以使用 git branch 的 -vv 选项。 这会将所有的本地分支列出来并且包含更多的信息。
+```
+git branch -vv
+```
+// TODO: 
+
 ## 6 GitHub 
