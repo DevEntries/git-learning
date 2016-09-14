@@ -15,21 +15,26 @@
 远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。
 “master” 是当你运行 git init 时**默认的起始分支名字**，原因仅仅是它的广泛使用。
 “origin” 是当你运行 git clone 时**默认的远程仓库名字**。
+
 ![git-3.5-remote-and-local-branch](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-3.5-remote-and-local-branch.jpg)
 
 也许，只要你不与 origin 服务器连接，你的 origin/master 指针就不会移动。
+
 ![git-3.5-someone-else-pushes](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-3.5-someone-else-pushes.jpg)
 
 运行 `git fetch origin` 命令。 
 这个会命令查找 “origin” 是哪一个服务器（在本例中，它是 `git.ourcompany.com`），
 从中**抓取本地（库）没有的数据**，并且更新本地数据库，移动 `origin/master` 指针指向新的、更新后的位置。
+
 ![git-3.5-git-fetch.jpg](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-3.5-git-fetch.jpg)
 
 你可以运行 `git remote add` 命令添加一个新的远程仓库引用到当前的项目。
 将这个远程仓库命名为 teamone，将其作为整个 URL 的缩写。
+
 ![git-3.5-git-remote-add](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-3.5-git-remote-add.jpg)
 
 现在，可以运行 `git fetch teamone` 来抓取远程仓库 teamone 有而本地没有的数据。
+
 ![git-3.5-fetch-teamxxx-master](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-3.5-fetch-teamxxx-master.jpg)
 
 #### 推送   
@@ -131,16 +136,20 @@ git push origin --delete serverfix
 之前介绍过，整合分支最容易的方法是 merge 命令。 
 它会把两个分支的最新快照（C3 和 C4）以及二者最近的共同祖先（C2）进行三方合并，
 合并的结果是生成一个新的快照（并提交）。
+
 ![git-3.6-git-merge]()
 
 其实，还有一种方法：你可以提取在 C4 中引入的补丁和修改，然后在 C3 的基础上再应用一次。 
+
 ![git-3.6-git-rebase]()
+
 在 Git 中，这种操作就叫做 变基。
 你可以使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。
 ```
 git checkout experiment
 git rebase master
 ```
+
 ![git-3.6-git-rebase-master]()
 
 现在回到 master 分支，进行一次快进合并。
@@ -148,6 +157,7 @@ git rebase master
 git checkout master
 git merge experiment
 ```
+
 ![git-3.6-git-merge-after-rebase]()
 
 你在查看一个经过变基的分支的历史记录时会发现，尽管实际的开发工作是并行的，
@@ -174,6 +184,7 @@ git merge experiment
 
 #### 集中式工作流    
 集中式系统中通常使用的是**单点协作模型**——集中式工作流。
+
 ![git-5.1-shared-repository]()
 
 #### 集成管理者工作流    
@@ -183,6 +194,7 @@ Git 允许多个远程仓库存在，使得这样一种工作流成为可能：
 你需要从该项目克隆出一个自己的公开仓库，然后将自己的修改推送上去。 
 接着你可以请求**官方仓库的维护者**拉取更新合并到主项目。 
 维护者可以将你的仓库作为远程仓库添加进来，在本地测试你的变更，将其合并入他们的分支并推送回官方仓库。
+
 ![git-3.1-blessed-repository]()
 
 #### 司令官与副官工作流    
@@ -190,7 +202,9 @@ Git 允许多个远程仓库存在，使得这样一种工作流成为可能：
 被称为副官（lieutenant）的各个集成管理者分别负责**集成项目中的特定部分**。 
 所有这些副官头上还有一位称为司令官（dictator）的**总集成管理者**负责统筹。 
 **司令官维护的仓库作为参考仓库**，为所有协作者提供他们需要拉取的项目代码。
+
 ![git-5.1-dictator-lieutenant]()
+
 这种工作流程并*不常用*，只有当项目极为庞杂，或者需要多级别管理时，才会体现出优势。
 
 ## 6 GitHub   
