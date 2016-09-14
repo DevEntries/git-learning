@@ -28,6 +28,7 @@
 你可以运行 `git remote add` 命令添加一个新的远程仓库引用到当前的项目。
 将这个远程仓库命名为 teamone，将其作为整个 URL 的缩写。
 ![git-3.5-git-remote-add](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-3.5-git-remote-add.jpg)
+
 现在，可以运行 `git fetch teamone` 来抓取远程仓库 teamone 有而本地没有的数据。
 ![git-3.5-fetch-teamxxx-master](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-3.5-fetch-teamxxx-master.jpg)
 
