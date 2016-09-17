@@ -40,6 +40,8 @@ Git有三种状态，你的文件可能处于其中之一：
 已修改表示修改了文件，但还没保存到数据库中。
 已暂存表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。
 
+由此引入 Git 项目的三个工作区域的概念：Git 仓库、工作目录以及暂存区域。
+
 ![git-1.3-three-areas](https://raw.githubusercontent.com/huangrlm/markdown-img/master/git-1.3-three-areas.jpg)
 
 **暂存区域是一个文件**，保存了下次将提交的文件列表信息，一般在Git仓库目录中。 有时候也被称作“索引”。
