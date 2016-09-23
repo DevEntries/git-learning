@@ -1,0 +1,8 @@
+[user]
+	name = huangrlm
+	email = huangrlm@126.com
+[color]
+	ui = true
+[alias]
+	lg = log --graph --pretty=oneline --abbrev-commit
+	st = status
