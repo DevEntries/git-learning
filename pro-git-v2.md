@@ -189,9 +189,9 @@ git add README
 `--graph` 显示 ASCII 图形表示的分支合并历史。   
 
 #### 限制输出长度   
-`-<n>` 仅显示最近的 n 条提交
-`--author` 仅显示指定作者相关的提交。
-`--committer` 仅显示指定提交者相关的提交。
+`-<n>` 仅显示最近的 n 条提交。   
+`--author` 仅显示指定作者相关的提交。   
+`--committer` 仅显示指定提交者相关的提交。   
 
 ### 2.4 Git 基础 - 撤消操作   
 
@@ -366,8 +366,8 @@ Git 的默认分支名字是 master。 在多次提交操作之后，
 Git 的 “master” 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。
 
 **IMPORTANT**   
-1. 每次产生的提交对象会包含一个指向上次提交对象（**父对象**）的指针。(首次提交除外)      
-2. Git 的分支，其实本质上**仅仅是指向提交对象的可变指针**。   
+* 每次产生的提交对象会包含一个指向上次提交对象（**父对象**）的指针。(首次提交除外)      
+* Git 的分支，其实本质上**仅仅是指向提交对象的可变指针**。   
 
 #### 分支创建   
 Git 是怎么创建新分支的呢？ 很简单，它只是为你创建了一个可以移动的新的指针。 比如
@@ -568,7 +568,8 @@ git checkout --track origin/serverfix
 
 ret: 
 Branch serverfix set up to track remote branch serverfix from origin.
-Switched to a new branch 'serverfix' #serverfix 和 origin/serverfix 同名
+Switched to a new branch 'serverfix' 
+#serverfix 和 origin/serverfix 同名
 ```
 
 如果想要将本地分支与远程分支设置为不同名字。
@@ -577,7 +578,8 @@ git checkout -b sf origin/serverfix
 
 ret: 
 Branch sf set up to track remote branch serverfix from origin.
-Switched to a new branch 'sf' # sf 和 origin/serverfix 不同名
+Switched to a new branch 'sf' 
+#sf 和 origin/serverfix 不同名
 ```
 现在，本地分支 sf 会自动从 `origin/serverfix` 拉取。
 
@@ -650,11 +652,6 @@ git merge experiment
 呃，奇妙的变基也并非完美无缺，要用它得遵守一条准则：   
 **不要对在你的仓库外有副本的分支执行变基**。   
 如果你遵循这条金科玉律，就不会出差错。 否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。
-
-## 4 服务器上的 Git   
-
-到目前为止，你应该已经有办法使用 Git 来完成日常工作。 
-然而，为了使用 Git 协作功能，你还需要有远程的 Git 仓库。
 
 ## 5 分布式 Git   
 
