@@ -42,7 +42,7 @@ Git有三种状态，你的文件可能处于其中之一：
 
 由此引入 Git 项目的三个工作区域的概念：Git 仓库、工作目录以及暂存区域。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-1.3-three-areas.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-1.3-three-areas.jpg)
 
 **暂存区域是一个文件**，保存了下次将提交的文件列表信息，一般在Git仓库目录中。 有时候也被称作“索引”。
 
@@ -95,7 +95,7 @@ git clone https://github.com/libgit2/libgit2 mylibgit
 它们既不存在于上次快照的记录中，也没有放入暂存区。 
 初次克隆某个仓库的时候，工作目录中的所有文件都属于已跟踪文件，并处于未修改状态。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-2.2-file-status.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-2.2-file-status.jpg)
 
 **Untracked files**   
 未跟踪的文件意味着Git在之前的快照（提交）中没有这些文件。
@@ -354,14 +354,14 @@ Git 处理分支的方式可谓是难以置信的轻量，创建新分支这一�
 ### 3.1 Git 分支 - 分支简介   
 为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何保存数据的。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.1-commit-object-and-its-parent.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.1-commit-object-and-its-parent.jpg)
 
 Git 的分支，其实**本质上仅仅是指向提交对象的可变指针**。
 Git 的默认分支名字是 master。 在多次提交操作之后，
 你其实已经有一个指向最后那个提交对象的 master 分支。
 它会在每次的提交操作中自动向前移动。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.1-branch-and-commit-logs.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.1-branch-and-commit-logs.jpg)
  
 Git 的 “master” 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。
 
@@ -383,7 +383,7 @@ git branch testing
 **IMPORTANT**   
 `HEAD`可以想象为分支别名，既然是别名，就必须注意它引用的是哪个分支。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.1-whats-HEAD.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.1-whats-HEAD.jpg)
 
 #### 分支切换   
 要切换到一个已存在的分支，你需要使用 `git checkout` 命令。
@@ -424,7 +424,7 @@ git checkout iss53
 Git 会自动添加、删除、修改文件，
 以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.2-new-hotfix-branch.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.2-new-hotfix-branch.jpg)
 
 关于某个紧急问题的解决方案发布之后，你准备回到被打断之前时的工作中。 然而，
 你应该先删除 hotfix 分支，因为你已经不再需要它了 —— master 分支已经指向了和hotfix同一个位置。
@@ -435,7 +435,7 @@ git branch -d hotfix
 
 #### 分支的合并   
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.2-branch-deverged.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.2-branch-deverged.jpg)
 
 Git 将此次三方合并的结果做了一个新的快照并且自动创建一个新的提交指向它。 
 这个被称作一次合并提交，它的特别之处在于他有不止一个父提交。
@@ -471,7 +471,7 @@ git branch -d iss53
 #### 长期分支   
 因为 Git 使用简单的**三方合并**，所以就算在一段较长的时间内，反复把一个分支合并入另一个分支，也不是什么难事。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.4-branch-work-silos.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.4-branch-work-silos.jpg)
 
 你可以用这种方法维护不同层次的稳定性。
 
@@ -491,26 +491,26 @@ git branch -d iss53
 “master” 是当你运行 git init 时**默认的起始分支名字**，原因仅仅是它的广泛使用。
 “origin” 是当你运行 git clone 时**默认的远程仓库名字**。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.5-remote-and-local-branch.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.5-remote-and-local-branch.jpg)
 
 也许，只要你不与 origin 服务器连接，你的 origin/master 指针就不会移动。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.5-someone-else-pushes.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.5-someone-else-pushes.jpg)
 
 运行 `git fetch origin` 命令。 
 这个会命令查找 “origin” 是哪一个服务器（在本例中，它是 `git.ourcompany.com`），
 从中**抓取本地（库）没有的数据**，并且更新本地数据库，移动 `origin/master` 指针指向新的、更新后的位置。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.5-git-fetch.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.5-git-fetch.jpg)
 
 你可以运行 `git remote add` 命令添加一个新的远程仓库引用到当前的项目。
 将这个远程仓库命名为 teamone，将其作为整个 URL 的缩写。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.5-git-remote-add.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.5-git-remote-add.jpg)
 
 现在，可以运行 `git fetch teamone` 来抓取远程仓库 teamone 有而本地没有的数据。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.5-fetch-teamxxx-master.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.5-fetch-teamxxx-master.jpg)
 
 #### 推送   
 如果希望和别人一起在名为 serverfix 的分支上工作，你可以像推送第一个分支那样推送它。 
@@ -617,11 +617,11 @@ git push origin --delete serverfix
 它会把两个分支的最新快照（C3 和 C4）以及二者最近的共同祖先（C2）进行三方合并，
 合并的结果是生成一个新的快照（并提交）。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.6-git-merge.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.6-git-merge.jpg)
 
 其实，还有一种方法：你可以提取在 C4 中引入的补丁和修改，然后在 C3 的基础上再应用一次。 
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.6-git-rebase.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.6-git-rebase.jpg)
 
 在 Git 中，这种操作就叫做 变基。
 你可以使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。
@@ -630,7 +630,7 @@ git checkout experiment
 git rebase master
 ```
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.6-git-rebase-master.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.6-git-rebase-master.jpg)
 
 现在回到 master 分支，进行一次快进合并。
 ```
@@ -638,7 +638,7 @@ git checkout master
 git merge experiment
 ```
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-3.6-git-merge-after-rebase.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-3.6-git-merge-after-rebase.jpg)
 
 你在查看一个经过变基的分支的历史记录时会发现，尽管实际的开发工作是并行的，
 但它们看上去就像是先后串行的一样，**提交历史是一条直线没有分叉**。
@@ -660,7 +660,7 @@ git merge experiment
 #### 集中式工作流   
 集中式系统中通常使用的是**单点协作模型**——集中式工作流。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-5.1-shared-repository.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-5.1-shared-repository.jpg)
 
 #### 集成管理者工作流   
 Git 允许多个远程仓库存在，使得这样一种工作流成为可能：   
@@ -670,7 +670,7 @@ Git 允许多个远程仓库存在，使得这样一种工作流成为可能：
 接着你可以请求**官方仓库的维护者**拉取更新合并到主项目。 
 维护者可以将你的仓库作为远程仓库添加进来，在本地测试你的变更，将其合并入他们的分支并推送回官方仓库。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-5.1-blessed-repository.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-5.1-blessed-repository.jpg)
 
 #### 司令官与副官工作流   
 这其实是多仓库工作流程的变种。 一般拥有数百位协作开发者的超大型项目才会用到这样的工作方式，例如著名的 Linux 内核项目。 
@@ -678,7 +678,7 @@ Git 允许多个远程仓库存在，使得这样一种工作流成为可能：
 所有这些副官头上还有一位称为司令官（dictator）的**总集成管理者**负责统筹。 
 **司令官维护的仓库作为参考仓库**，为所有协作者提供他们需要拉取的项目代码。
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-5.1-dictator-lieutenant.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-5.1-dictator-lieutenant.jpg)
 
 这种工作流程并*不常用*，只有当项目极为庞杂，或者需要多级别管理时，才会体现出优势。
 
@@ -733,7 +733,7 @@ ret:
 git read-tree --prefix=bak d8329fc1cc938780ffdd9f94e0d364e0ea74f579
 ```
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-10.2-read-tree--prefix.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-10.2-read-tree--prefix.jpg)
 
 #### 提交对象   
 可以通过调用 commit-tree 命令创建一个提交对象，为此需要指定一个树对象的 SHA-1 值，以及该提交的父提交对象（如果有的话）。
@@ -744,7 +744,7 @@ Git 所做的实质工作——将被改写的文件保存为数据对象，更�
 
 如果跟踪所有的内部指针，将得到一个类似下面的对象关系图：
 
-![](https://raw.githubusercontent.com/huangrlm/git-learning/master/image/git-10.2-git-objects.jpg)
+![](https://raw.githubusercontent.com/DevEntries/git-learning/master/image/git-10.2-git-objects.jpg)
 
 ### 10.3 Git 内部原理 - Git 引用   
 
